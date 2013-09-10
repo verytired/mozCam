@@ -1,0 +1,5 @@
+# mozCom
+
+openFrameworksを使ったiOSアプリサンプル。
+
+
