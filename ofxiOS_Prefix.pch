@@ -1,0 +1,10 @@
+//
+// Prefix header for all source files of the 'iPhone' target in the 'iPhone' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
+
+#define USE_CAMERA
