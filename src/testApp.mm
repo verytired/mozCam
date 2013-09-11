@@ -170,25 +170,29 @@ void testApp::gotMemoryWarning() {
 void testApp::deviceOrientationChanged(int newOrientation) {
     cout << "orientation = " << newOrientation << endl;
 
-    if(newOrientation==5)
-        return;
-    ofSetOrientation((ofOrientation)newOrientation);
-    grabber.initGrabber(ofGetWidth(), ofGetHeight());
-    switch(newOrientation){
-        case 1:
-        case 2:
-            colorCv=&colorCvVertical;
-            colorCvSmall=&colorCvSmallVertical;
-            grayCv=&grayCvVertical;
-            gui.setPosition(10, 420);
-            break;
-        case 3:
-        case 4:
-            colorCv=&colorCvHorizontal;
-            colorCvSmall=&colorCvSmallHorizontal;
-            grayCv=&grayCvHorizontal;
-            gui.setPosition(10, 200);
-            break;
-    }
+
+    //todo do not rotation now
+    /*
+   if(newOrientation==5)
+       return;
+   ofSetOrientation((ofOrientation)newOrientation);
+   grabber.initGrabber(ofGetWidth(), ofGetHeight());
+   switch(newOrientation){
+       case 1:
+       case 2:
+           colorCv=&colorCvVertical;
+           colorCvSmall=&colorCvSmallVertical;
+           grayCv=&grayCvVertical;
+           gui.setPosition(10, 420);
+           break;
+       case 3:
+       case 4:
+           colorCv=&colorCvHorizontal;
+           colorCvSmall=&colorCvSmallHorizontal;
+           grayCv=&grayCvHorizontal;
+           gui.setPosition(10, 200);
+           break;
+   }
+   */
 
 }
