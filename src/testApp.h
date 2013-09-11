@@ -27,6 +27,7 @@ class testApp : public ofxiOSApp{
         void deviceOrientationChanged(int newOrientation);
 
         void savePic();
+        void drawCamView();
 
 		ofImage img;
 

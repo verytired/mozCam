@@ -50,7 +50,7 @@ void testApp::setup() {
     gui.setup("panel");
     ofxGuiSetDefaultHeight(30);
     gui.add(size.set( "size", 20, 1, 30));
-    gui.setPosition(10, 420);
+    gui.setPosition(10, 380);
     ring.loadSound("ring.wav");
 
     myGuiViewController =[[MyGuiViewController alloc] init];
@@ -86,10 +86,21 @@ void testApp::update() {
 void testApp::draw() {
 
     ofSetColor(255);
+    drawCamView();
+    ofEnableAlphaBlending();
+    ofSetColor(230, 0, 255, 200);
+    ofRect(0, 0, ofGetWidth(), 16);
+    ofSetColor(255, 255, 255);
+    ofDrawBitmapString("face detector & mosaic", 5, 12);
+    gui.draw();
+}
+
+void testApp::drawCamView(){
     float scaleFactor = 1.0;
+
     #ifdef USE_CAMERA
-		grabber.draw(0, 0);
-		scaleFactor = 4.0;
+        grabber.draw(0, 0);
+        scaleFactor = 4.0;
         ofxCvColorImage img;
         img.allocate(grabber.width, grabber.height);
         img = grabber.getPixels();
@@ -113,18 +124,10 @@ void testApp::draw() {
             }
         }
 
-	#else
+    #else
         img.draw(0, 0);
     #endif
-
-    ofEnableAlphaBlending();
-    ofSetColor(230, 0, 255, 200);
-    ofRect(0, 0, ofGetWidth(), 16);
-    ofSetColor(255, 255, 255);
-    ofDrawBitmapString("face detector & mosaic", 5, 12);
-    gui.draw();
 }
-
 //--------------------------------------------------------------
 void testApp::exit() {
 
@@ -147,10 +150,7 @@ void testApp::touchUp(ofTouchEventArgs & touch) {
 
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(ofTouchEventArgs & touch) {
-    cout << "double touch" << endl;
-//    ofSaveScreen("capture image");
-//    camera->saveImage();
-//    ofxiOSScreenGrab(NULL);
+
 }
 
 //--------------------------------------------------------------
@@ -206,6 +206,7 @@ void testApp::deviceOrientationChanged(int newOrientation) {
 
 void testApp::savePic(){
     cout << "savePic" << endl;
+    drawCamView();
     ring.play();
     ofSaveScreen("capture image");
     camera->saveImage();
