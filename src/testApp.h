@@ -26,10 +26,7 @@ class testApp : public ofxiOSApp{
         void gotMemoryWarning();
         void deviceOrientationChanged(int newOrientation);
 
-//        void rotateToPortrait();
-//        void rotateToPortraitUpSideDown();
-//        void rotateToLandscapeLeft();
-//        void rotateToLandscapeRight();
+        void savePic();
 
 		ofImage img;
 
@@ -60,12 +57,10 @@ class testApp : public ofxiOSApp{
         //カメラを使用するためのアドオン
         ofxiOSImagePicker * camera;
 
-
         //gui
         ofxPanel gui;
-        //変数　このままここに値が入る
         ofParameter<int> size;
-
+        ofSoundPlayer ring;
 
 };
 

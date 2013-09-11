@@ -1,5 +1,8 @@
 #include "testApp.h"
 
+#include "MyGuiViewController.h" //add
+MyGuiViewController * myGuiViewController; //add
+
 //--------------------------------------------------------------
 void testApp::setup() {
 
@@ -48,6 +51,10 @@ void testApp::setup() {
     ofxGuiSetDefaultHeight(30);
     gui.add(size.set( "size", 20, 1, 30));
     gui.setPosition(10, 420);
+    ring.loadSound("ring.wav");
+
+    myGuiViewController =[[MyGuiViewController alloc] init];
+    [ofxiOSGetGLView() addSubview:myGuiViewController.view];
 }
 
 //--------------------------------------------------------------
@@ -141,9 +148,9 @@ void testApp::touchUp(ofTouchEventArgs & touch) {
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(ofTouchEventArgs & touch) {
     cout << "double touch" << endl;
-    ofSaveScreen("capture image");
-    camera->saveImage();
-    ofxiOSScreenGrab(NULL);
+//    ofSaveScreen("capture image");
+//    camera->saveImage();
+//    ofxiOSScreenGrab(NULL);
 }
 
 //--------------------------------------------------------------
@@ -195,4 +202,12 @@ void testApp::deviceOrientationChanged(int newOrientation) {
    }
    */
 
+}
+
+void testApp::savePic(){
+    cout << "savePic" << endl;
+    ring.play();
+    ofSaveScreen("capture image");
+    camera->saveImage();
+    ofxiOSScreenGrab(NULL);
 }
