@@ -1,4 +1,4 @@
-# mozCom
+# mozCam
 openFrameworksを使ったiOSアプリサンプルです。
 
 ## 内容

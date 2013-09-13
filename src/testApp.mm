@@ -47,7 +47,7 @@ void testApp::setup() {
     ofxGuiSetTextPadding(4);
     ofxGuiSetDefaultWidth(300);
     ofxGuiSetDefaultHeight(18);
-    gui.setup("panel");
+    gui.setup("mosaic");
     ofxGuiSetDefaultHeight(30);
     gui.add(size.set( "size", 20, 1, 30));
     gui.setPosition(10, 380);
@@ -91,7 +91,7 @@ void testApp::draw() {
     ofSetColor(230, 0, 255, 200);
     ofRect(0, 0, ofGetWidth(), 16);
     ofSetColor(255, 255, 255);
-    ofDrawBitmapString("face detector & mosaic", 5, 12);
+    ofDrawBitmapString("face detector :: covered with a mosaic", 5, 12);
     gui.draw();
 }
 
