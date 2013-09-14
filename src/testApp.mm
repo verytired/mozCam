@@ -18,6 +18,20 @@ void testApp::setup() {
 
 		int w = grabber.getWidth();
 		int h = grabber.getHeight();
+    
+        //画像領域を確保する
+        colorCvVertical.allocate(w,h);
+        colorCvHorizontal.allocate(h,w);
+    
+        colorCvSmallVertical.allocate(w/4, h/4);
+        colorCvSmallHorizontal.allocate(h/4, w/4);
+    
+        grayCvVertical.allocate(w/4, h/4);
+        grayCvHorizontal.allocate(h/4, w/4);
+    
+        colorCv=&colorCvVertical;
+        colorCvSmall=&colorCvSmallVertical;
+        grayCv=&grayCvVertical;
 
 	#else
         //カメラ使わない場合は画像読み込み
