@@ -6,7 +6,7 @@ MyGuiViewController * myGuiViewController;
 //--------------------------------------------------------------
 void testApp::setup() {
 
-    ofxiOSSetOrientation(OF_ORIENTATION_DEFAULT);
+    ofSetOrientation(OF_ORIENTATION_DEFAULT);
     // 検分器の読み込み
     finder.setup("haarcascade_frontalface_default.xml");
 
@@ -50,7 +50,7 @@ void testApp::setup() {
     ofxGuiSetDefaultHeight(30);
     gui.add(size.set( "size", 20, 1, 30));
     gui.setPosition(10, 380);
-    ring.loadSound("ring.wav");
+    ring.load("ring.wav");
 
     myGuiViewController =[[MyGuiViewController alloc] init];
     [ofxiOSGetGLView() addSubview:myGuiViewController.view];
@@ -90,7 +90,7 @@ void testApp::draw() {
     #endif
     ofEnableAlphaBlending();
     ofSetColor(230, 0, 255, 200);
-    ofRect(0, 0, ofGetWidth(), 16);
+    ofDrawRectangle(0, 0, ofGetWidth(), 16);
     ofSetColor(255, 255, 255);
     ofDrawBitmapString("face detector :: covered with a mosaic", 5, 12);
     gui.draw();
@@ -118,7 +118,7 @@ void testApp::drawCamView(){
                 int valueG = pixels[j * w + i + 1];
                 int valueB = pixels[j * w + i + 2];
                 ofSetColor(valueR, valueG, valueB);
-                ofRect(i, j, skip, skip);
+                ofDrawRectangle(i, j, skip, skip);
              }
          }
      }
