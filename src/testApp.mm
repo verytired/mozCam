@@ -1,17 +1,17 @@
 #include "testApp.h"
 
-#include "MyGuiViewController.h" //add
-MyGuiViewController * myGuiViewController; //add
+#include "MyGuiViewController.h"
+MyGuiViewController * myGuiViewController;
 
 //--------------------------------------------------------------
 void testApp::setup() {
 
     ofxiOSSetOrientation(OF_ORIENTATION_DEFAULT);
-    //検分器の読み込み
+    // 検分器の読み込み
     finder.setup("haarcascade_frontalface_default.xml");
 
     #ifdef USE_CAMERA
-        //カメラセッティング
+        // カメラセッティング
 		ofSetFrameRate(20);
 		grabber.setDesiredFrameRate(20);
 		grabber.initGrabber(ofGetWidth(), ofGetHeight());
@@ -19,7 +19,7 @@ void testApp::setup() {
 		int w = grabber.getWidth();
 		int h = grabber.getHeight();
     
-        //画像領域を確保する
+        // 画像領域を確保する
         colorCvVertical.allocate(w,h);
         colorCvHorizontal.allocate(h,w);
     
@@ -34,16 +34,13 @@ void testApp::setup() {
         grayCv=&grayCvVertical;
 
 	#else
-        //カメラ使わない場合は画像読み込み
+        // カメラ使わない場合は画像読み込み
         img.loadImage("sample.png");
     #endif
 
-    //検分器の設定
+    // 検分器の設定
     finder.setNeighbors(1);
     finder.setScaleHaar(1.5);
-
-    camera = new ofxiOSImagePicker();
-    camera->setMaxDimension(480);
 
     //gui settings
     ofxGuiSetTextPadding(4);
@@ -73,7 +70,7 @@ void testApp::update() {
         *grayCv = tempCv;
 		finder.findHaarObjects(*grayCv);
 		faces = finder.blobs;
-        //検出した顔情報の配列
+        // 検出した顔情報の配列
         faces = finder.blobs;
 	#else
         //we don't really need to do this every frame
@@ -106,12 +103,10 @@ void testApp::drawCamView(){
      grabber.draw(0, 0);
      scaleFactor = 4.0;
      ofxCvColorImage img;
-     img.allocate(grabber.width, grabber.height);
+     img.allocate(grabber.getWidth(), grabber.getHeight());
      img = grabber.getPixels();
-     unsigned char *pixels = img.getPixels();
-
+     ofPixels & pixels = grabber.getPixels();
      int w = img.width;
-     int h = img.height;
 
      //set mosaic
      int skip = size;
@@ -178,39 +173,12 @@ void testApp::gotMemoryWarning() {
 //--------------------------------------------------------------
 void testApp::deviceOrientationChanged(int newOrientation) {
     cout << "orientation = " << newOrientation << endl;
-
-
-    //todo do not rotation now
-    /*
-   if(newOrientation==5)
-       return;
-   ofSetOrientation((ofOrientation)newOrientation);
-   grabber.initGrabber(ofGetWidth(), ofGetHeight());
-   switch(newOrientation){
-       case 1:
-       case 2:
-           colorCv=&colorCvVertical;
-           colorCvSmall=&colorCvSmallVertical;
-           grayCv=&grayCvVertical;
-           gui.setPosition(10, 420);
-           break;
-       case 3:
-       case 4:
-           colorCv=&colorCvHorizontal;
-           colorCvSmall=&colorCvSmallHorizontal;
-           grayCv=&grayCvHorizontal;
-           gui.setPosition(10, 200);
-           break;
-   }
-   */
-
 }
 
 void testApp::savePic(){
     cout << "savePic" << endl;
     drawCamView();
     ring.play();
-    ofSaveScreen("capture image");
-    camera->saveImage();
+    ofSaveScreen("capture image"); //画像保存
     ofxiOSScreenGrab(NULL);
 }

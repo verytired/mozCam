@@ -1,15 +1,19 @@
 #include "testApp.h"
-#include "ofMain.h"
-//#include "ofAppiOSWindow.h"
 
-int main(){
-    //opegl es2.0を使う
-    ofAppiOSWindow * window = new ofAppiOSWindow();
-    window->enableRendererES2();
-
-    window->enableHardwareOrientation();
-    window->enableOrientationAnimation();
-
-    ofSetupOpenGL(1024,768, OF_FULLSCREEN);			// <-------- setup the GL context
-    ofRunApp(new testApp);
+int main() {
+    
+    //  here are the most commonly used iOS window settings.
+    //------------------------------------------------------
+    ofiOSWindowSettings settings;
+    settings.enableRetina = false; // enables retina resolution if the device supports it.
+    settings.enableDepth = false; // enables depth buffer for 3d drawing.
+    settings.enableAntiAliasing = false; // enables anti-aliasing which smooths out graphics on the screen.
+    settings.numOfAntiAliasingSamples = 0; // number of samples used for anti-aliasing.
+    settings.enableHardwareOrientation = false; // enables native view orientation.
+    settings.enableHardwareOrientationAnimation = false; // enables native orientation changes to be animated.
+    settings.glesVersion = OFXIOS_RENDERER_ES2; // type of renderer to use, ES1, ES2, etc.
+    
+    ofCreateWindow(settings);
+    
+    return ofRunApp(new testApp);
 }

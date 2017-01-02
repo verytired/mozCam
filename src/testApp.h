@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ofMain.h"
 #include "ofxiOS.h"
 #include "ofxiOSExtras.h"
 
@@ -54,10 +53,7 @@ class testApp : public ofxiOSApp{
 		ofImage colorImg;
 
 		vector<ofxCvBlob> faces;
-
-        //カメラを使用するためのアドオン
-        ofxiOSImagePicker * camera;
-
+    
         //gui
         ofxPanel gui;
         ofParameter<int> size;
