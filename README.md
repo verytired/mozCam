@@ -17,3 +17,8 @@ of_v0.9.8_ios_release/apps/myApps
 2.ProjectGeneratorを起動してProjectファイルをimportし、addonにofxGuiとofxOpenCv.hを追加しupdateする
 
 <img src="docs/img1.png" width="50%">
+
+3.実機でテストする場合はofxiOS_Prefix.pchに記述してあるUSE_CAMERAの設定を有効にする
+```
+define USE_CAMERA
+```
