@@ -6,11 +6,14 @@ openFrameworksを使ったiOSアプリサンプルです。
 撮影ボタンを押すとカメラロールに画像を保存します。
 
 ## 実行環境
-openFrameworks (ios) 0.8.0
+openFrameworks (ios) 0.9.8
 
 ## 実行方法
-ソース全体をフォルダごとSDK内のappsフォルダに設置してビルドしてください
+1.ソース全体をフォルダごとSDK内のapps/myAppsフォルダに設置する
 ```
-of_v0.8.0_ios_release/apps/myApps
+of_v0.9.8_ios_release/apps/myApps
 ```
 
+2.ProjectGeneratorを起動してProjectファイルをimportし、addonにofxGuiとofxOpenCv.hを追加しupdateする
+
+<img src="docs/img1.png" width="50%">
