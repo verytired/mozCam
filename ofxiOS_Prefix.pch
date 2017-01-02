@@ -7,5 +7,5 @@
     #import <UIKit/UIKit.h>
 #endif
 
-//ローカルでテストする場合ははずす
-#define USE_CAMERA
+// ローカルでテストする場合ははずす
+// #define USE_CAMERA
